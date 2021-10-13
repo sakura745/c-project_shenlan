@@ -23,7 +23,7 @@ int main() {
     int correctCnt = 0;
     int wrongCnt = 0;
     double totalScore = 0;
-    time_t minTime, totalTime;
+    time_t minTime = INT32_MAX, totalTime;
     srand(time(nullptr));//srand和rand不能放到循环里，否则每次生成的随机数对会不变。
 
     while (tmp) {
@@ -62,8 +62,7 @@ int main() {
         std::cout << "Time for this problem: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()
                   << "ms\n";
         totalTime += std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
-        minTime = std::min(std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count(),
-                           std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() + 1);
+        minTime = std::min(std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count(), minTime);
 
         if (input == res) {
             correctCnt++;
