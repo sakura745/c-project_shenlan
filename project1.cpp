@@ -52,9 +52,8 @@ int main() {
             continue;
         tmp--;
 
-        auto start = std::chrono::steady_clock::now();
         std::cout << "\nGiven two numbers " << a << " and " << b << '\n';
-
+        auto start = std::chrono::steady_clock::now();
         int input = 0;
         std::cout << "Please compute the result: ";
         std::cin >> input;
@@ -69,16 +68,16 @@ int main() {
             double sum = maxScore / Cnt;
             totalScore += sum;
         } else {
-            std::cout << "Em! The correct answer is: " << a << " and " << b << " = " << res << std::endl;
+            std::cout << "Em! The correct answer is: " << a << " and " << b << " is " << res << std::endl;
             wrongCnt++;
         }
     }
 
     std::cout << "\nTHE FINAL TEST RESULT\n";
     if (correctCnt == Cnt) {
-        std::cout << "Oops! You are fuckin genius! " << '\n';
+        std::cout << "Oops! You are fuckin genius! \n";
     } else if (correctCnt == 0) {
-        std::cout << "Come on~ Please be serious!! " << '\n';
+        std::cout << "Come on~ Please be serious!! \n";
     }
     std::cout << "Your total score is " << (int)totalScore << " and the full marks is " << maxScore << '\n'
               << "MinTime is " << minTime << "ms, " << "Average Time is " << totalTime / Cnt << "ms\n"
