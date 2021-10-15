@@ -81,7 +81,7 @@ int main() {
         totalTime += std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
         minTime = std::min(std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count(), minTime);
 
-        if ((double)std::abs(input - res) < 0.01) {//注意绝对值也有类型！！！
+        if ((double)std::abs(input - res) < 0.01) {//由于是浮点数，因此不可能输入到和底层写的精度一样。设置一个精度，注意绝对值也有类型！！！
             correctCnt++;
             double sum = maxScore / Cnt;
             totalScore += sum;
