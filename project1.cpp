@@ -19,7 +19,7 @@ int main() {
     std::cin >> maxValue;
 
     std::string str;
-    std::cout << "Select mode esay and type \'easy\', hard and type \'hard\': ";
+    std::cout << R"(Select mode easy and type "easy", hard and type "hard": )";//转义字符过多使用，改为原始字符
     std::cin >> str;
 
     std::cout << "Keep two decimal places!\n";
@@ -27,7 +27,7 @@ int main() {
     int correctCnt = 0;
     int wrongCnt = 0;
     double totalScore = 0;
-    time_t minTime = INT32_MAX, totalTime;
+    time_t minTime = INT32_MAX, totalTime = 0;
     srand(time(nullptr));//srand和rand不能放到循环里，否则每次生成的随机数对会不变。
 
     while (tmp) {
@@ -58,6 +58,10 @@ int main() {
                 res = a * b;
             } else {
                 s = " / ";
+                //防止除0溢出
+                if (b < 0.01) {
+                    b += 0.01;
+                }
                 res = a / b;
             }
         } else {
@@ -71,10 +75,10 @@ int main() {
         tmp--;
 
         std::cout << std::setprecision(2) << std::setiosflags(std::ios::fixed)
-                  << "\nGiven two numbers " << a << s << b << '\n';
-        auto start = std::chrono::steady_clock::now();
+                  << "\nThe equation is " << a << s << b << '\n';
         double input = 0;
         std::cout << "Please compute the result: ";
+        auto start = std::chrono::steady_clock::now();
         std::cin >> input;
         auto end = std::chrono::steady_clock::now();
         std::cout << "Time for this problem: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()
