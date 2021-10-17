@@ -3,6 +3,9 @@
 #include <chrono>
 #include <iomanip>
 #include <cmath>
+#include <vector>
+
+using namespace std;
 
 int main() {
     int Cnt = 0;
@@ -28,6 +31,8 @@ int main() {
     int wrongCnt = 0;
     double totalScore = 0;
     time_t minTime = INT32_MAX, totalTime = 0;
+    vector<double> wrongEqu;
+    vector<string> strEqu;
     srand(time(nullptr));//srand和rand不能放到循环里，否则每次生成的随机数对会不变。
 
     while (tmp) {
@@ -87,12 +92,17 @@ int main() {
         minTime = std::min(std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count(), minTime);
 
         if (std::fabs(input - res) < 0.01) {//由于是浮点数，因此不可能输入到和底层写的精度一样。设置一个精度，注意绝对值也有类型！！！
+            cout << "Good!\n";
             correctCnt++;
             double sum = maxScore / Cnt;
             totalScore += sum;
         } else {
-            std::cout << "Em! The correct answer is: " << a << s << b << " = " << res << std::endl;
+            cout << "Em! The answer is wrong!\n";
             wrongCnt++;
+            wrongEqu.push_back(a);
+            strEqu.push_back(s);
+            wrongEqu.push_back(b);
+            wrongEqu.push_back(res);
         }
     }
 
@@ -107,6 +117,10 @@ int main() {
               << "There are " << Cnt << " questions\n"
               << "The correct number of question is " << correctCnt << '\n'
               << "The wrong number of question is " << wrongCnt << '\n';
+    for (int i = 0; wrongEqu[3 * i] != 0; i++) {
+        cout << "The correct answer to the wrong question is: "
+             << wrongEqu[3 * i] << strEqu[i] << wrongEqu[3 * i + 1] << " = " << wrongEqu[3 * i + 2] << endl;
+    }
 
     return 0;
 }
