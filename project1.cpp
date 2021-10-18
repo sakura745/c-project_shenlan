@@ -117,10 +117,13 @@ int main() {
               << "There are " << Cnt << " questions\n"
               << "The correct number of question is " << correctCnt << '\n'
               << "The wrong number of question is " << wrongCnt << '\n';
-    for (int i = 0; wrongEqu[3 * i] != 0; i++) {
+
+        for (int i = 0; i < wrongEqu.size() / 3; i++) {
         cout << "The correct answer to the wrong question is: "
              << wrongEqu[3 * i] << strEqu[i] << wrongEqu[3 * i + 1] << " = " << wrongEqu[3 * i + 2] << endl;
     }
+
+        cout << wrongEqu[3 * maxValue];
 
     return 0;
 }
